@@ -17,6 +17,7 @@ async function bootstrap() {
 
   app.use('/api-docs',
     apiReference({
+      theme: 'deepSpace',
       spec: {
         content: document
       }
