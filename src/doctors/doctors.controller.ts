@@ -4,15 +4,25 @@ import { CreateDoctorDto } from './dto/create-doctor.dto';
 import { UpdateDoctorDto } from './dto/update-doctor.dto';
 import { ApiCreatedResponse, ApiOkResponse } from '@nestjs/swagger';
 import { DoctorEntity } from './entities/doctor.entity';
+import { AuthService } from 'src/auth/auth.service';
 
 @Controller('doctors')
 export class DoctorsController {
-  constructor(private readonly doctorsService: DoctorsService) {}
+  constructor(
+    private readonly doctorsService: DoctorsService,
+    private readonly authService: AuthService
+  ) {}
 
   @Post()
   @ApiCreatedResponse({ type: DoctorEntity })
-  create(@Body() createDoctorDto: CreateDoctorDto) {
-    return this.doctorsService.create(createDoctorDto);
+  async create(@Body() createDoctorDto: CreateDoctorDto) {
+    const hashedPassword = await this.authService.hashPassword(createDoctorDto.password)
+    const doctorData = {
+      ...createDoctorDto,
+      password: hashedPassword
+    }
+    
+    return this.doctorsService.create(doctorData);
   }
 
   @Get()
