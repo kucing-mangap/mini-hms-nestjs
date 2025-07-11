@@ -6,9 +6,9 @@ Mini HMS is a minimal yet powerful full-stack hospital management system designe
 
 ## 🚀 Tech Stack
 
-**Backend**: Node.js, NestJS
-**Database**: PostgreSQL
-**Authentication**: JWT
+**Backend**: Node.js, NestJS  
+**Database**: PostgreSQL  
+**Authentication**: JWT  
 
 ---
 
