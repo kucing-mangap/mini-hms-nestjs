@@ -1,6 +1,6 @@
-# 🏥 HospitalLite — Full-Stack Hospital Management System
+# 🏥 Mini HMS — Full-Stack Hospital Management System
 
-HospitalLite is a minimal yet powerful full-stack hospital management system designed for clinics, small hospitals, or demo purposes. Built to showcase full-stack development skills, it supports role-based access for **Admins**, **Doctors**, and **Patients** with key features like appointment booking, medical record management, and dashboards.
+Mini HMS is a minimal yet powerful full-stack hospital management system designed for clinics, small hospitals, or demo purposes. Built to showcase full-stack development skills, it supports role-based access for **Admins**, **Doctors**, and **Patients** with key features like appointment booking, medical record management, and dashboards.
 
 ---
 
