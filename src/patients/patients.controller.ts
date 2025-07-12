@@ -2,27 +2,18 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe } from 
 import { PatientsService } from './patients.service';
 import { CreatePatientDto } from './dto/create-patient.dto';
 import { UpdatePatientDto } from './dto/update-patient.dto';
-import { AuthService } from 'src/auth/auth.service';
 import { ApiCreatedResponse, ApiOkResponse } from '@nestjs/swagger';
 import { PatientEntity } from './entities/patient.entity';
 
 @Controller('patients')
 export class PatientsController {
   constructor(
-    private readonly patientsService: PatientsService,
-    private readonly authService: AuthService
-  ) {}
+    private readonly patientsService: PatientsService) {}
 
   @Post()
   @ApiCreatedResponse({ type: PatientEntity })
-  async create(@Body() createPatientDto: CreatePatientDto) {
-    const hashedPassword = await this.authService.hashPassword(createPatientDto.password)
-    const patientData = {
-      ...createPatientDto,
-      password: hashedPassword
-    }
-    
-    return this.patientsService.create(patientData);
+  create(@Body() createPatientDto: CreatePatientDto) {
+    return this.patientsService.create(createPatientDto);
   }
 
   @Get()
