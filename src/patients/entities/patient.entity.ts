@@ -17,7 +17,7 @@ export class PatientEntity implements Patient {
   @ApiProperty()
   password: string;
   
-  @ApiProperty({ required: false, nullable: true })
+  @ApiProperty({ type: String, required: false, nullable: true })
   phone: string | null;
 
   @ApiProperty()
