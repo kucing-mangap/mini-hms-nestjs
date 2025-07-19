@@ -84,21 +84,24 @@ model Appointment {
   createdAt         DateTime          @default(now()) @map("created_at")
   updatedAt         DateTime          @updatedAt @map("updated_at")
 
-  patient Patient @relation(fields: [patientId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  doctor  Doctor  @relation(fields: [doctorId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  patient       Patient        @relation(fields: [patientId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  doctor        Doctor         @relation(fields: [doctorId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  medicalRecord MedicalRecord? @relation("AppointmentMedicalRecord")
 
   @@map("appointments")
 }
 
 model MedicalRecord {
   id                   Int      @id @default(autoincrement())
-  appointmentId        Int      @map("appointment_id")
+  appointmentId        Int      @unique @map("appointment_id")
   doctorId             Int      @map("doctor_id")
   recordNotes          String   @map("record_notes")
   diagnosis            String   @db.VarChar(255)
   prescribedMedication String   @map("prescribed_medication")
   createdAt            DateTime @default(now()) @map("created_at")
   updatedAt            DateTime @updatedAt @map("updated_at")
+
+  appointment Appointment @relation("AppointmentMedicalRecord", fields: [appointmentId], references: [id])
 
   @@map("medical_records")
 }
