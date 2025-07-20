@@ -18,7 +18,18 @@ export class DoctorsService {
   }
 
   findOne(id: number) {
-    return this.prisma.doctor.findUnique({ where: { id } })
+    // return this.prisma.doctor.findUnique({ where: { id }})
+    
+    return this.prisma.doctor.findUnique({ 
+      where: { id },
+      include: {
+        appointments: {
+          include: {
+            patient: true,
+          }
+        }
+      }
+    })
   }
 
   async update(id: number, updateDoctorDto: UpdateDoctorDto) {

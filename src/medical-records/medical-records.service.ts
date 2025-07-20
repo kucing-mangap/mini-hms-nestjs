@@ -16,7 +16,19 @@ export class MedicalRecordsService {
   }
 
   findOne(id: number) {
-    return this.prisma.medicalRecord.findUnique({ where: {id } })
+    // return this.prisma.medicalRecord.findUnique({ where: { id } })
+
+    return this.prisma.medicalRecord.findUnique({
+      where: { id },
+      include: {
+        appointment: {
+          include: {
+            patient: true,
+            doctor: true
+          }
+        }
+      }
+    })
   }
 
   update(id: number, updateMedicalRecordDto: UpdateMedicalRecordDto) {
