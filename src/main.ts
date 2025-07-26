@@ -12,6 +12,7 @@ async function bootstrap() {
     .setTitle('Mini SIMRS')
     .setDescription('The Mini SIMRS API Documentation')
     .setVersion('0.1')
+    .addBearerAuth()
     .build()
 
   const document = SwaggerModule.createDocument(app, config)
