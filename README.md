@@ -2,6 +2,7 @@
 
 Mini HMS is a minimal yet powerful full-stack hospital management system designed for clinics, small hospitals, or demo purposes. Built to showcase full-stack development skills, it supports role-based access for **Admins**, **Doctors**, and **Patients** with key features like appointment booking, medical record management, and dashboards.
 
+> I know this repository is only contain NestJS code (backend), but I will provide the Angular (frontend) repository later on. Or even I will merge it into one repository, stay tuned 😁
 ---
 
 ## 🚀 Tech Stack
