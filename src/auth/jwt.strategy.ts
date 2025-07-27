@@ -24,7 +24,6 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
 
   async validate(payload: { userId: number; userType: 'admin' | 'doctor' | 'patient' }) {
     const { userId, userType } = payload;
-    console.log(userId, userType)
 
     let user: any;
 
