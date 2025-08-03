@@ -1,98 +1,106 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 🏥 Mini HMS — Full-Stack Hospital Management System
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Mini HMS is a minimal yet powerful full-stack hospital management system designed for clinics, small hospitals, or demo purposes. Built to showcase full-stack development skills, it supports role-based access for **Admins**, **Doctors**, and **Patients** with key features like appointment booking, medical record management, and dashboards.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+## 🚀 Tech Stack
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+**Backend**: ![Node.js](https://img.shields.io/badge/-Node.js-339933?style=flat&logo=nodedotjs&logoColor=white), ![NestJS](https://img.shields.io/badge/-NestJS-E0234E?style=flat&logo=nestjs&logoColor=white)  
+**Database**: ![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-336791?style=flat&logo=postgresql&logoColor=white)  
+**Authentication**: ![JWT](https://img.shields.io/badge/JWT-black?style=flat&logo=JSON%20web%20tokens)  
 
-## Project setup
+---
+
+## 🧑‍⚕️ User Roles & Features
+
+### 🧑‍⚕️ Doctor
+- View upcoming appointments
+- View and update patient medical records
+- Add diagnosis and prescribed medications
+
+### 👤 Patient
+- Register and log in
+- Book appointments with doctors (based on specialization)
+- View and cancel upcoming appointments
+- View personal medical records
+
+### 🛠 Admin
+- Add new doctor accounts
+- View total doctors, patients, appointments (analytics)
+- Manage hospital data (read-only for now)
+
+---
+
+## 🗃️ Database Schema Overview
+
+- `doctors`: Doctor details and specialty
+- `patients`: Patient personal and health info
+- `admins`: Admin user accounts
+- `appointments`: Links patients to doctors
+- `medical_records`: Doctor-written medical notes per appointment
+
+> For full schema, check `docs/schema.sql`. (_Coming Soon_)
+
+---
+
+## 🧪 Demo
+
+> 🚧 Live Demo: _Coming Soon_  
+> 🎥 Loom Walkthrough: _Coming Soon_
+
+---
+
+## 🛠️ Getting Started
+
+### 📦 Prerequisites
+
+Make sure you have the following installed:
+
+- [Node.js](https://nodejs.org/) (v18.18 or above)
+- [pnpm](https://pnpm.io/) (or you could also use [npm](https://www.npmjs.com/), [yarn](https://yarnpkg.com/))
+- [PostgreSQL](https://www.postgresql.org/)
+- [Nest CLI](https://docs.nestjs.com/cli/overview) (optional)
 
 ```bash
-$ pnpm install
+pnpm add -g @nestjs/cli   # Install Nest CLI as a global package
+# or 
+npm i -g @nestjs/cli      # If you prefer using npm
 ```
-
-## Compile and run the project
-
+  
+## 🚀 Running the App
+### 1. Install dependencies
 ```bash
-# development
-$ pnpm run start
-
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
+pnpm i
 ```
 
-## Run tests
-
+### 2. Copy and configure environment variables
 ```bash
-# unit tests
-$ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
+cp .env.example .env
 ```
 
-## Deployment
+Then edit the `.env` file with your database credentials
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
+### 3. Set up the database using Prisma
 ```bash
-$ pnpm install -g @nestjs/mau
-$ mau deploy
+pnpm prisma generate     # Generate Prisma Client
+pnpm prisma migrate dev   # Apply migrations to your local database
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### 4. Run the app in development mode
+```bash
+pnpm start:dev
+# or
+npm run start:dev
+```
+  
+## 🔍 API Documentation
+After the app is running, open:
+```bash
+http://localhost:3000/api-docs
+```
+This serves the API documentation using [Scalar](https://scalar.com/) for an enhanced OpenAPI experience.  
 
-## Resources
+---
 
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+#### Note: this app is still in development, so there are many improvements expected in the future. Even the documentation itself 😁
